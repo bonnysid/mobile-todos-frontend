@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { Router } from './src/router/Router';
+import { RouterProvider } from './src/router/RouterProvider';
+import { Routes } from './src/router/routes';
+import { AuthProvider, NotificationProvider } from './src/providers';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <View>
+            <AuthProvider>
+                <NotificationProvider>
+                    <RouterProvider initialPage={Routes.LOGIN}>
+                        <Router/>
+                    </RouterProvider>
+                </NotificationProvider>
+            </AuthProvider>
+        </View>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
